@@ -447,6 +447,98 @@
   }
   .contact-item:hover { color: var(--or); }
 
+  /* ══════════════════════════════════════
+     RESUME
+  ══════════════════════════════════════ */
+  .resume-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    flex-wrap: wrap; gap: var(--s-5);
+  }
+  .resume-actions { display: flex; gap: var(--s-3); }
+  .btn {
+    display: inline-flex; align-items: center; gap: var(--s-2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-11); text-transform: uppercase; letter-spacing: var(--tr-mega);
+    padding: 8px 14px;
+    border: 1px solid var(--ui-3); border-radius: var(--r-2);
+    color: var(--tx-2); background: none; cursor: pointer;
+    transition: all var(--dur-2) var(--ease-std);
+    text-decoration: none;
+  }
+  .btn:hover { border-color: var(--or); color: var(--or); }
+  .btn-primary { border-color: var(--or); color: var(--or); }
+  .btn-primary:hover { background: var(--or); color: var(--bg); }
+
+  .resume-summary {
+    padding: var(--s-7) 0;
+    border-bottom: 1px solid var(--ui);
+    font-size: var(--fs-18); color: var(--tx-2);
+    line-height: var(--lh-loose);
+    max-width: 760px;
+  }
+  .resume-summary strong { color: var(--tx); font-weight: 500; }
+
+  .resume-section {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--s-7);
+    padding: var(--s-7) 0;
+    border-bottom: 1px solid var(--ui);
+  }
+  .resume-section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-12); text-transform: uppercase; letter-spacing: var(--tr-mega);
+    color: var(--tx-3);
+    position: sticky; top: 80px;
+    align-self: start;
+  }
+  .resume-entries { display: flex; flex-direction: column; gap: var(--s-6); }
+  .resume-entry { display: flex; flex-direction: column; gap: var(--s-2); }
+  .resume-entry-title {
+    font-size: var(--fs-18); font-weight: 500;
+    line-height: var(--lh-snug);
+  }
+  .resume-entry-title em {
+    color: var(--tx-2); font-style: normal; font-weight: 400;
+  }
+  .resume-entry-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-12); color: var(--tx-3);
+    font-variant-numeric: tabular-nums;
+  }
+  .resume-entry-body {
+    font-size: var(--fs-14); color: var(--tx-2);
+    line-height: var(--lh-base);
+    margin-top: var(--s-2);
+    max-width: 680px;
+  }
+  .resume-entry-body strong { color: var(--tx); font-weight: 500; }
+
+  .resume-list {
+    display: flex; flex-direction: column; gap: var(--s-3);
+    font-size: var(--fs-14); color: var(--tx-2);
+    line-height: var(--lh-base);
+  }
+  .resume-list-item { display: flex; gap: var(--s-3); align-items: baseline; }
+  .resume-list-item::before {
+    content: ''; width: 4px; height: 4px;
+    background: var(--ui-3); border-radius: 999px;
+    margin-top: 9px; flex-shrink: 0;
+  }
+  .resume-list-item strong { color: var(--tx); font-weight: 500; }
+
+  .resume-inline-list {
+    font-size: var(--fs-14); color: var(--tx-2);
+    line-height: var(--lh-loose);
+  }
+  .resume-inline-list span { color: var(--tx); }
+
+  @media (max-width: 760px) {
+    .resume-section { grid-template-columns: 1fr; gap: var(--s-4); padding: var(--s-6) 0; }
+    .resume-section-label { position: static; }
+    .resume-head { flex-direction: column; align-items: flex-start; }
+  }
+
   /* ── FOOTER ── */
   footer {
     border-top: 1px solid var(--ui);
@@ -496,6 +588,7 @@
         <button class="nav-tab"        onclick="showPage('work')"    data-page="work">Work</button>
         <button class="nav-tab"        onclick="showPage('now')"     data-page="now">Now</button>
         <button class="nav-tab"        onclick="showPage('writing')" data-page="writing">Writing</button>
+        <button class="nav-tab"        onclick="showPage('resume')"  data-page="resume">Résumé</button>
         <button class="nav-tab"        onclick="showPage('about')"   data-page="about">About</button>
       </nav>
       <span class="header-loc">Mendocino, CA</span>
@@ -1002,6 +1095,244 @@
 </div><!-- /page-writing -->
 
 
+<!-- ═══════════════════════════════ RESUME ═══════════════════════════════ -->
+<div id="page-resume" class="page">
+  <div class="container">
+
+    <div class="page-head">
+      <div class="resume-head">
+        <div>
+          <div class="eyebrow">Résumé</div>
+          <h1 class="page-title">Enzo Abuliak.</h1>
+          <div class="now-meta" style="margin-top: var(--s-3)">
+            Student · Mendocino, CA · Updated 2026-05
+          </div>
+        </div>
+        <div class="resume-actions">
+          <a class="btn btn-primary" href="resume.pdf" download>
+            <i data-lucide="download" style="width:14px;height:14px;stroke-width:1.5"></i>
+            Download PDF
+          </a>
+          <a class="btn" href="mailto:enzo.abuliak@gmail.com">
+            <i data-lucide="mail" style="width:14px;height:14px;stroke-width:1.5"></i>
+            Get in touch
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="resume-summary">
+      High-achieving international high school student with academic interests in <strong>architecture, engineering, and media</strong>. Demonstrated experience in academic research, international exchange, and collaborative projects across the US, Europe, and Japan.
+    </div>
+
+    <!-- Contact -->
+    <div class="resume-section">
+      <div class="resume-section-label">Contact</div>
+      <div class="resume-entries">
+        <div class="resume-list">
+          <div class="resume-list-item"><span><strong>Address</strong> · 39700 Little River Airport Rd, Little River, CA 95456</span></div>
+          <div class="resume-list-item"><span><strong>Phone</strong> · +1 (707) 734-3279</span></div>
+          <div class="resume-list-item"><span><strong>Email</strong> · enzo.abuliak@gmail.com · enzoa2027@musdstudents.org</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Languages -->
+    <div class="resume-section">
+      <div class="resume-section-label">Languages</div>
+      <div class="resume-entries">
+        <div class="resume-list">
+          <div class="resume-list-item"><span><strong>English</strong> — Native</span></div>
+          <div class="resume-list-item"><span><strong>Spanish</strong> — Native</span></div>
+          <div class="resume-list-item"><span><strong>Swiss German</strong> — Conversational</span></div>
+          <div class="resume-list-item"><span><strong>German</strong> — Intermediate (B1, targeting C1)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="resume-section">
+      <div class="resume-section-label">Education</div>
+      <div class="resume-entries">
+
+        <div class="resume-entry">
+          <div class="resume-entry-title">Mendocino High School</div>
+          <div class="resume-entry-meta">Aug 2025 — present · Mendocino, California</div>
+          <div class="resume-entry-body">
+            Junior (11th grade). Unweighted GPA <strong>4.00</strong> · Weighted GPA <strong>4.27</strong>.
+          </div>
+        </div>
+
+        <div class="resume-entry">
+          <div class="resume-entry-title">Kantonsschule Wiedikon <em>— Exchange Student</em></div>
+          <div class="resume-entry-meta">Aug 2024 — July 2025 · Zürich, Switzerland</div>
+          <div class="resume-entry-body">
+            Full-time public Gymnasium coursework through the AFS-USA exchange program. Academic instruction primarily conducted in German. Emphasis on independence, cultural integration, and academic rigor. Credit/no-credit received in place of traditional grades as per AFS-USA policy.
+          </div>
+        </div>
+
+        <div class="resume-entry">
+          <div class="resume-entry-title">Mendocino Community High School</div>
+          <div class="resume-entry-meta">Aug 2023 — Jun 2024 · Mendocino, California</div>
+          <div class="resume-entry-body">
+            Freshman (9th grade). Unweighted GPA <strong>4.00</strong> · Weighted GPA <strong>4.00</strong>.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Academic & Research -->
+    <div class="resume-section">
+      <div class="resume-section-label">Academic &amp; Research</div>
+      <div class="resume-entries">
+
+        <div class="resume-entry">
+          <div class="resume-entry-title">Harvard Impact &amp; Research Fellowship <em>— Student, Learn with Leaders</em></div>
+          <div class="resume-entry-meta">Oct 2022 — Mar 2023 · Remote</div>
+          <div class="resume-entry-body">
+            Selected for a competitive five-month international research fellowship. Conducted independent research on <strong>passive architecture and its impact on carbon emissions</strong>. Published research paper in the <em>International Education and Research Journal</em>.
+          </div>
+        </div>
+
+        <div class="resume-entry">
+          <div class="resume-entry-title">Cambridge Prep Experience <em>— Aerospace Engineering</em></div>
+          <div class="resume-entry-meta">Jul — Aug 2023 · Cambridge, England</div>
+          <div class="resume-entry-body">
+            Attended an intensive Aerospace Engineering program on partial scholarship. Earned final evaluation of <strong>A+</strong> for academic performance.
+          </div>
+        </div>
+
+        <div class="resume-entry">
+          <div class="resume-entry-title">Summer Institute for the Gifted</div>
+          <div class="resume-entry-meta">Jun — Jul 2022 · UC Berkeley</div>
+          <div class="resume-entry-body">
+            Completed intensive interdisciplinary coursework. Focused study on theoretical physics and short filmmaking.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Leadership -->
+    <div class="resume-section">
+      <div class="resume-section-label">Leadership &amp; Extracurriculars</div>
+      <div class="resume-entries">
+
+        <div class="resume-entry">
+          <div class="resume-entry-title">KAKX Student-Powered Radio <em>— Executive Board, Host</em></div>
+          <div class="resume-entry-meta">Aug 2023 — present · Mendocino High School</div>
+          <div class="resume-entry-body">
+            Produced and hosted weekly live radio programs broadcast throughout Mendocino County. Served on the executive board, contributing to programming decisions and station operations. Collaborated with student teams on audio production, sound engineering, and media planning.
+          </div>
+        </div>
+
+        <div class="resume-entry">
+          <div class="resume-entry-title">Interact Club</div>
+          <div class="resume-entry-meta">Aug 2025 — present · Mendocino High School</div>
+          <div class="resume-entry-body">
+            Participate in Rotary-affiliated community service projects through the Interact Club.
+          </div>
+        </div>
+
+        <div class="resume-entry">
+          <div class="resume-entry-title">Culinary Arts CTE Program</div>
+          <div class="resume-entry-meta">Aug 2023 — present · Mendocino High School</div>
+          <div class="resume-entry-body">
+            Participated in a school-run culinary program supporting community fundraisers and catered events. Worked in a student-operated food truck and earned a <strong>California Food Handler License</strong>. Completed a capstone project.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- International & Civic -->
+    <div class="resume-section">
+      <div class="resume-section-label">International &amp; Civic Engagement</div>
+      <div class="resume-entries">
+
+        <div class="resume-entry">
+          <div class="resume-entry-title">Miasa Sister Cities Association <em>— Student Ambassador</em></div>
+          <div class="resume-entry-meta">Jan — Mar 2024 · Mendocino &amp; Miasa, Japan</div>
+          <div class="resume-entry-body">
+            Selected to represent Mendocino in an international cultural exchange with 25 other students. Participated in a 2.5-week program including a homestay in Japan. Engaged in cultural, educational, and community-based exchange activities.
+          </div>
+        </div>
+
+        <div class="resume-entry">
+          <div class="resume-entry-title">Montessori Model United Nations <em>— Delegate</em></div>
+          <div class="resume-entry-meta">Mar 2022 · New York City</div>
+          <div class="resume-entry-body">
+            Represented the Bahamas. Authored a position paper on <em>Transparency and Confidence-Building Measures in Outer Space Activities</em>.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Athletics -->
+    <div class="resume-section">
+      <div class="resume-section-label">Athletics</div>
+      <div class="resume-entries">
+
+        <div class="resume-entry">
+          <div class="resume-entry-title">Soccer</div>
+          <div class="resume-list" style="margin-top: var(--s-2)">
+            <div class="resume-list-item"><span><strong>Varsity Soccer</strong>, Mendocino High School — Starting Player</span></div>
+            <div class="resume-list-item"><span><strong>FC Merenschwand</strong> — Competitive Club Player (Switzerland)</span></div>
+            <div class="resume-list-item"><span>Two Rivers Soccer Camp — 2023, 2024</span></div>
+          </div>
+        </div>
+
+        <div class="resume-entry">
+          <div class="resume-entry-title">Tennis</div>
+          <div class="resume-list" style="margin-top: var(--s-2)">
+            <div class="resume-list-item"><span><strong>Varsity Tennis</strong>, Mendocino High School — Second Seed</span></div>
+          </div>
+        </div>
+
+        <div class="resume-entry">
+          <div class="resume-entry-title">Mendocino County Eagles' Futsal <em>— Indoor Soccer</em></div>
+          <div class="resume-list" style="margin-top: var(--s-2)">
+            <div class="resume-list-item"><span>Competitive Futsal Program — Starting Player</span></div>
+            <div class="resume-list-item"><span>Coach and mentor for younger players — 4 years</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="resume-section">
+      <div class="resume-section-label">Skills</div>
+      <div class="resume-entries">
+        <div class="resume-list">
+          <div class="resume-list-item"><span><strong>Media &amp; Design</strong> · Adobe Lightroom, Premiere Pro, Audition, Photoshop</span></div>
+          <div class="resume-list-item"><span><strong>Audio &amp; Film</strong> · Audio production, field recording, cinematography</span></div>
+          <div class="resume-list-item"><span><strong>Digital Tools</strong> · Google Workspace, Microsoft 365</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interests -->
+    <div class="resume-section" style="border-bottom: none;">
+      <div class="resume-section-label">Interests</div>
+      <div class="resume-entries">
+        <p class="resume-inline-list">
+          <span>Architecture</span> · <span>Engineering</span> · <span>Industrial Design</span> · <span>Photography</span> · <span>Cinematography</span> · <span>Broadcast Production</span> · <span>Cooking</span>
+        </p>
+      </div>
+    </div>
+
+  </div>
+  <footer><div class="container"><div class="footer-inner">
+    <span>enzo abuliak</span>
+    <span>Updated May 2026</span>
+  </div></div></footer>
+</div>
+
+
 <!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
 <div id="page-about" class="page">
   <div class="container">
@@ -1036,8 +1367,8 @@
           <div class="about-block-label">Currently at</div>
           <p style="font-size:var(--fs-14);color:var(--tx-2);line-height:var(--lh-base)">
             Mendocino High School · Junior<br>
-            AP Lang · Spanish IV · Cultural Anthropology<br>
-            Video/Broadcast · Culinary<br>
+            Broadcast Production · PreCalc · Cultural Anthropology<br>
+            AP Literature · Culinary · Modern World History · Video Production<br>
             Student executive, <span class="accent">KAKX 89.3 FM</span>
           </p>
         </div>
@@ -1047,7 +1378,7 @@
           <div class="contact-list">
             <a class="contact-item" href="mailto:enzo.abuliak@gmail.com">
               <i data-lucide="mail" style="width:14px;height:14px;stroke-width:1.5;flex-shrink:0"></i>
-              enzo.abuliak@gmail.com
+              enzo.abuliak@gmail.com  |  enzo.abuliak@icloud.com
             </a>
             <div class="contact-item">
               <i data-lucide="map-pin" style="width:14px;height:14px;stroke-width:1.5;flex-shrink:0"></i>
@@ -1062,13 +1393,13 @@
           <h2 class="about-heading">From a small town on the California coast.</h2>
           <div class="about-block" style="border:none;padding:0">
             <p>
-              I grew up in <strong>Mendocino, California</strong> — a town of about a thousand people on a bluff above the Pacific. My dad, Pablo, built our house by hand. The ocean is a constant presence, and it's shaped how I think about what endures and what doesn't. I'm Italian and American by citizenship, and the European thread has always been there — in my family, in the language I'm working toward, in the architecture and design I find myself drawn to.
+              I grew up in <strong>Mendocino, California</strong> — a town of about a thousand people on a bluff above the Pacific. I'm Italian and American by citizenship, but my father is from Buenos Aires, Argentina, and that patronage is a big part of who I am. The European thread has always been there, both in my family, in the language I'm working toward, and in the architecture and design I find myself drawn to.
             </p>
             <p>
-              I'm a junior at Mendocino High School. In fall 2026 I'm leaving for <strong>UWC-USA</strong> in Montezuma, New Mexico to start the IB Diploma Programme — a two-year high school with students from sixty countries, the kind of education that points toward the world I want to live in. After that: <strong>ETH Zurich</strong>, civil engineering, and a career building physical infrastructure in Europe. Not software. Bridges, transit systems, the things that move people through cities.
+              I'm a junior at Mendocino High School. In fall 2026 I'm leaving for <strong>UWC-USA</strong> in Montezuma, New Mexico to start the IB Diploma Programme. It's a two-year high school with students from sixty countries, the kind of education that points toward the world I want to live in. After that: <strong>ETH Zurich</strong>, civil engineering, and a career building physical infrastructure in Europe is my goal.
             </p>
             <p>
-              In the meantime I make films, run a radio show, edit video professionally, and write code when something I need doesn't exist yet. I think the creative and technical work feed each other more than most people expect — directing a short film and building an app require the same thing: deciding what to leave out.
+              In the meantime I make films, run a radio show, edit video professionally, and write code when something I need doesn't exist yet. I think the creative and technical work feed each other more than most people expect. Directing a short film and building an app require the same thing: deciding what to leave out.
             </p>
           </div>
         </div>
@@ -1080,7 +1411,7 @@
 
         <div class="about-block">
           <div class="about-block-label">On design</div>
-          <p>My aesthetic runs Swiss/Bauhaus — grid, restraint, warm color, no decoration that isn't doing work. The AP Lit paper I'm writing this spring is about exactly this: how Bauhaus designers physically emigrated to Switzerland and seeded what became the Swiss International Style. I'm interested in design as a discipline with a history, not a toolkit.</p>
+          <p>My aesthetic runs Swiss/Bauhaus — grid, restraint, warm color, no decoration that isn't doing work. The research project I'm doing this spring is about exactly this: how Bauhaus designers physically emigrated to Switzerland and seeded what became the Swiss International Style. I'm interested in design as a discipline with a history.</p>
         </div>
       </div>
 
