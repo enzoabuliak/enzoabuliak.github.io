@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html data-theme="dark" lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enzo Abuliak</title>
+<meta name="description" content="Enzo Abuliak — filmmaker, radio host, and builder from Mendocino, California.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  /* ── TOKENS ── */
+  :root {
+    --bg:    #100F0F;
+    --bg-2:  #1C1B1A;
+    --ui:    #282726;
+    --ui-2:  #343331;
+    --ui-3:  #403E3C;
+    --tx:    #CECDC3;
+    --tx-2:  #878580;
+    --tx-3:  #6F6E69;
+    --or:    #DA702C;
+    --cy:    #3AA99F;
+    --re:    #D14D41;
+    --gr:    #879A39;
+    --ye:    #D0A215;
+    --bl:    #4385BE;
+    --pu:    #8B7EC8;
+
+    --fs-11: 11px; --fs-12: 12px; --fs-14: 14px; --fs-16: 16px;
+    --fs-18: 18px; --fs-20: 20px; --fs-24: 24px; --fs-32: 32px;
+    --fs-44: 44px; --fs-64: 64px;
+
+    --lh-tight: 1.02; --lh-snug: 1.15; --lh-base: 1.5; --lh-loose: 1.7;
+
+    --tr-tight: -0.03em; --tr-snug: -0.015em;
+    --tr-wide:   0.08em; --tr-mega: 0.16em;
+
+    --s-1: 4px;  --s-2: 8px;   --s-3: 12px; --s-4: 16px;
+    --s-5: 24px; --s-6: 32px;  --s-7: 48px; --s-8: 64px; --s-9: 96px;
+
+    --r-0: 0px; --r-1: 2px; --r-2: 4px; --r-pill: 999px;
+
+    --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --ease-std: cubic-bezier(0.4, 0, 0.2, 1);
+    --dur-1: 80ms; --dur-2: 160ms; --dur-3: 240ms;
+  }
+
+  /* ── RESET ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--tx);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--fs-16);
+    line-height: var(--lh-base);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ── UTILITIES ── */
+  .mono      { font-family: 'JetBrains Mono', monospace; }
+  .eyebrow   { font-family: 'JetBrains Mono', monospace; font-size: var(--fs-12); text-transform: uppercase; letter-spacing: var(--tr-mega); color: var(--tx-2); }
+  .rule      { border-top: 1px solid var(--ui); }
+  .muted     { color: var(--tx-2); }
+  .faint     { color: var(--tx-3); }
+  .accent    { color: var(--or); }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 var(--s-6); }
+
+  /* ── PILL ── */
+  .pill {
+    display: inline-flex; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-11); text-transform: uppercase; letter-spacing: var(--tr-mega);
+    padding: 3px 9px;
+    border: 1px solid var(--ui-3); border-radius: var(--r-pill);
+    color: var(--tx-2); white-space: nowrap;
+  }
+
+  /* ── STATUS BADGE ── */
+  .badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-11); text-transform: uppercase; letter-spacing: var(--tr-mega);
+  }
+  .badge::before { content: ''; width: 6px; height: 6px; border-radius: 999px; flex-shrink:0; }
+  .badge-green  { color: var(--gr); } .badge-green::before  { background: var(--gr); }
+  .badge-yellow { color: var(--ye); } .badge-yellow::before { background: var(--ye); }
+  .badge-red    { color: var(--re); } .badge-red::before    { background: var(--re); }
+  .badge-blue   { color: var(--bl); } .badge-blue::before   { background: var(--bl); }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--ui);
+  }
+  .header-inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--s-5);
+    height: 56px;
+  }
+  .logo {
+    font-size: var(--fs-14); font-weight: 600;
+    letter-spacing: var(--tr-snug);
+    display: flex; align-items: center; gap: 6px;
+    cursor: pointer;
+  }
+  .logo-dot { width: 7px; height: 7px; background: var(--or); border-radius: 999px; }
+
+  nav { display: flex; }
+  .nav-tab {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: var(--fs-14); letter-spacing: var(--tr-snug);
+    color: var(--tx-2);
+    padding: 0 var(--s-4); height: 56px;
+    display: flex; align-items: center;
+    cursor: pointer; position: relative;
+    border: none; background: none;
+    transition: color var(--dur-2) var(--ease-std);
+  }
+  .nav-tab:hover { color: var(--tx); }
+  .nav-tab.active { color: var(--tx); }
+  .nav-tab.active::after {
+    content: ''; position: absolute;
+    bottom: 0; left: var(--s-4); right: var(--s-4);
+    height: 2px; background: var(--or);
+    border-radius: 1px 1px 0 0;
+  }
+
+  .header-loc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-11); text-transform: uppercase; letter-spacing: var(--tr-mega);
+    color: var(--tx-3);
+  }
+
+  /* ── PAGES ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── PAGE HEADER (shared) ── */
+  .page-head {
+    padding: var(--s-8) 0 var(--s-6);
+    border-bottom: 1px solid var(--ui);
+  }
+  .page-title {
+    font-size: var(--fs-44); font-weight: 500;
+    letter-spacing: var(--tr-tight); line-height: var(--lh-snug);
+    margin-top: var(--s-4);
+  }
+
+  /* ══════════════════════════════════════
+     HOME
+  ══════════════════════════════════════ */
+  .hero {
+    padding: var(--s-9) 0 var(--s-8);
+    border-bottom: 1px solid var(--ui);
+  }
+  .hero-eyebrow {
+    border-top: 1px solid var(--ui);
+    padding-top: var(--s-4);
+    margin-bottom: var(--s-5);
+  }
+  .hero-name {
+    font-size: clamp(54px, 9vw, 116px);
+    font-weight: 500; line-height: var(--lh-tight);
+    letter-spacing: -0.05em; color: var(--tx);
+    margin-bottom: var(--s-6);
+  }
+  .hero-name .dot { color: var(--or); }
+
+  .hero-cols {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: var(--s-8);
+    align-items: start;
+  }
+  .hero-bio {
+    font-size: var(--fs-18); color: var(--tx-2);
+    line-height: var(--lh-loose);
+  }
+  .hero-bio strong { color: var(--tx); font-weight: 500; }
+  .hero-stats {
+    display: flex; flex-direction: column;
+    gap: 0;
+  }
+  .hero-stat {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: var(--s-3) 0;
+    border-bottom: 1px solid var(--ui);
+    font-size: var(--fs-14);
+  }
+  .hero-stat:first-child { border-top: 1px solid var(--ui); }
+  .hero-stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-11); text-transform: uppercase; letter-spacing: var(--tr-mega);
+    color: var(--tx-3);
+  }
+  .hero-stat-val { color: var(--tx-2); }
+
+  .section-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-top: 1px solid var(--ui);
+    padding-top: var(--s-4);
+    margin-bottom: var(--s-6);
+  }
+  .section-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-11); text-transform: uppercase; letter-spacing: var(--tr-mega);
+    color: var(--tx-3); cursor: pointer;
+    transition: color var(--dur-2) var(--ease-std);
+  }
+  .section-link:hover { color: var(--or); }
+
+  /* Featured grid */
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px; background: var(--ui);
+    border: 1px solid var(--ui);
+  }
+  .feat-card {
+    background: var(--bg);
+    padding: var(--s-5); cursor: pointer;
+    transition: background var(--dur-2) var(--ease-std);
+    display: flex; flex-direction: column; gap: var(--s-3);
+  }
+  .feat-card:hover { background: var(--bg-2); }
+  .feat-type {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-11); text-transform: uppercase; letter-spacing: var(--tr-mega);
+    color: var(--tx-3);
+  }
+  .feat-title { font-size: var(--fs-18); font-weight: 500; line-height: var(--lh-snug); }
+  .feat-desc  { font-size: var(--fs-14); color: var(--tx-2); line-height: var(--lh-base); flex: 1; }
+  .feat-arrow { color: var(--tx-3); font-size: var(--fs-14); margin-top: var(--s-3); }
+
+  /* Currently strip */
+  .currently {
+    border: 1px solid var(--ui); padding: var(--s-4) var(--s-5);
+    display: flex; align-items: center; gap: var(--s-5);
+    cursor: pointer; transition: background var(--dur-2) var(--ease-std);
+  }
+  .currently:hover { background: var(--bg-2); }
+  .curr-dot { width: 8px; height: 8px; background: var(--gr); border-radius: 999px; flex-shrink: 0; }
+  .curr-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-11); text-transform: uppercase; letter-spacing: var(--tr-mega);
+    color: var(--tx-3); flex-shrink: 0;
+  }
+  .curr-text { font-size: var(--fs-14); color: var(--tx-2); }
+  .curr-arrow { margin-left: auto; color: var(--tx-3); }
+
+  /* ══════════════════════════════════════
+     WORK
+  ══════════════════════════════════════ */
+  .work-filters {
+    display: flex; gap: var(--s-2); flex-wrap: wrap;
+    margin-top: var(--s-5);
+  }
+  .filter-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-11); text-transform: uppercase; letter-spacing: var(--tr-mega);
+    padding: 4px 10px;
+    border: 1px solid var(--ui-3); border-radius: var(--r-pill);
+    color: var(--tx-2); background: none; cursor: pointer;
+    transition: all var(--dur-2) var(--ease-std);
+  }
+  .filter-btn:hover, .filter-btn.active { border-color: var(--or); color: var(--or); }
+
+  .work-row {
+    display: grid;
+    grid-template-columns: 48px 1fr auto auto;
+    gap: var(--s-5); align-items: center;
+    padding: var(--s-4) var(--s-3);
+    border-bottom: 1px solid var(--ui);
+    cursor: pointer; margin: 0 calc(-1 * var(--s-3));
+    transition: background var(--dur-2) var(--ease-std);
+  }
+  .work-row:hover { background: var(--bg-2); }
+  .w-idx {
+    font-family: 'JetBrains Mono', monospace; font-size: var(--fs-14);
+    color: var(--tx-3); font-variant-numeric: tabular-nums;
+  }
+  .w-title { font-size: var(--fs-16); font-weight: 500; }
+  .w-sub   { font-size: var(--fs-14); color: var(--tx-2); margin-top: 2px; }
+  .w-year  {
+    font-family: 'JetBrains Mono', monospace; font-size: var(--fs-12);
+    color: var(--tx-3); font-variant-numeric: tabular-nums;
+  }
+
+  /* ══════════════════════════════════════
+     NOW
+  ══════════════════════════════════════ */
+  .now-meta {
+    font-family: 'JetBrains Mono', monospace; font-size: var(--fs-12);
+    color: var(--tx-3); margin-top: var(--s-3);
+  }
+  .now-grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: var(--s-8);
+    padding: var(--s-7) 0;
+  }
+  .now-col { display: flex; flex-direction: column; gap: var(--s-7); }
+  .now-section {
+    border-top: 1px solid var(--ui);
+    padding-top: var(--s-4);
+  }
+  .now-sec-title {
+    font-family: 'JetBrains Mono', monospace; font-size: var(--fs-11);
+    text-transform: uppercase; letter-spacing: var(--tr-mega);
+    color: var(--tx-3); margin-bottom: var(--s-4);
+  }
+  .now-item {
+    padding: var(--s-3) 0;
+    border-bottom: 1px solid var(--ui);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .now-item:last-child { border-bottom: none; }
+  .now-item-top { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; }
+  .now-item-title { font-size: var(--fs-14); font-weight: 500; }
+  .now-item-body  { font-size: var(--fs-14); color: var(--tx-2); line-height: var(--lh-base); }
+  .now-item-tag   {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    text-transform: uppercase; letter-spacing: var(--tr-mega); color: var(--tx-3);
+  }
+
+  /* ══════════════════════════════════════
+     WRITING
+  ══════════════════════════════════════ */
+  .writing-row {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: var(--s-6); align-items: baseline;
+    padding: var(--s-5) var(--s-3);
+    margin: 0 calc(-1 * var(--s-3));
+    border-bottom: 1px solid var(--ui);
+    cursor: pointer;
+    transition: background var(--dur-2) var(--ease-std);
+  }
+  .writing-row:hover { background: var(--bg-2); }
+  .wr-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: var(--fs-11);
+    text-transform: uppercase; letter-spacing: var(--tr-mega); color: var(--tx-3);
+    margin-bottom: var(--s-2);
+  }
+  .wr-title { font-size: var(--fs-20); font-weight: 500; line-height: var(--lh-snug); }
+  .wr-desc  { font-size: var(--fs-14); color: var(--tx-2); margin-top: var(--s-2); line-height: var(--lh-base); }
+  .wr-date  {
+    font-family: 'JetBrains Mono', monospace; font-size: var(--fs-12);
+    color: var(--tx-3); white-space: nowrap; font-variant-numeric: tabular-nums;
+  }
+
+  /* Single post */
+  .post-back {
+    display: inline-flex; align-items: center; gap: var(--s-2);
+    font-family: 'JetBrains Mono', monospace; font-size: var(--fs-11);
+    text-transform: uppercase; letter-spacing: var(--tr-mega); color: var(--tx-3);
+    cursor: pointer; padding: var(--s-5) 0;
+    transition: color var(--dur-2) var(--ease-std);
+  }
+  .post-back:hover { color: var(--or); }
+  .post-header { border-bottom: 1px solid var(--ui); padding-bottom: var(--s-6); margin-bottom: var(--s-7); }
+  .post-eyebrow { margin-bottom: var(--s-4); }
+  .post-title {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 500; letter-spacing: var(--tr-tight); line-height: var(--lh-snug);
+    margin-bottom: var(--s-4);
+  }
+  .post-meta {
+    font-family: 'JetBrains Mono', monospace; font-size: var(--fs-12);
+    color: var(--tx-3); font-variant-numeric: tabular-nums;
+  }
+  .post-body { max-width: 680px; }
+  .post-body p {
+    font-size: var(--fs-18); color: var(--tx-2);
+    line-height: var(--lh-loose); margin-bottom: var(--s-5);
+  }
+  .post-body h2 {
+    font-size: var(--fs-24); font-weight: 500; color: var(--tx);
+    letter-spacing: var(--tr-snug); margin: var(--s-7) 0 var(--s-4);
+    padding-top: var(--s-6); border-top: 1px solid var(--ui);
+  }
+  .post-body strong { color: var(--tx); font-weight: 500; }
+  .post-body em { color: var(--tx); font-style: italic; }
+  .post-draft-notice {
+    display: inline-flex; align-items: center; gap: var(--s-2);
+    font-family: 'JetBrains Mono', monospace; font-size: var(--fs-11);
+    text-transform: uppercase; letter-spacing: var(--tr-mega);
+    color: var(--ye); margin-bottom: var(--s-6);
+  }
+
+  /* ══════════════════════════════════════
+     ABOUT
+  ══════════════════════════════════════ */
+  .about-layout {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: var(--s-9);
+    padding: var(--s-8) 0;
+  }
+  .about-sidebar { display: flex; flex-direction: column; gap: var(--s-7); }
+  .about-main    { display: flex; flex-direction: column; gap: var(--s-7); }
+  .about-block { border-top: 1px solid var(--ui); padding-top: var(--s-4); }
+  .about-block-label {
+    font-family: 'JetBrains Mono', monospace; font-size: var(--fs-11);
+    text-transform: uppercase; letter-spacing: var(--tr-mega);
+    color: var(--tx-3); margin-bottom: var(--s-4);
+  }
+  .about-block p {
+    font-size: var(--fs-16); color: var(--tx-2);
+    line-height: var(--lh-loose); margin-bottom: var(--s-4);
+  }
+  .about-block p:last-child { margin-bottom: 0; }
+  .about-block strong { color: var(--tx); font-weight: 500; }
+  .about-heading {
+    font-size: var(--fs-32); font-weight: 500;
+    letter-spacing: var(--tr-tight); line-height: var(--lh-snug);
+    margin-bottom: var(--s-5);
+  }
+
+  .lang-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: var(--s-2) 0; border-bottom: 1px solid var(--ui); font-size: var(--fs-14);
+  }
+  .lang-row:last-child { border-bottom: none; }
+  .lang-name  { font-weight: 500; }
+  .lang-level {
+    font-family: 'JetBrains Mono', monospace; font-size: var(--fs-11);
+    text-transform: uppercase; letter-spacing: var(--tr-mega); color: var(--tx-3);
+  }
+
+  .tools-wrap { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+
+  .contact-list { display: flex; flex-direction: column; gap: var(--s-3); }
+  .contact-item {
+    display: flex; align-items: center; gap: var(--s-3);
+    font-size: var(--fs-14); color: var(--tx-2);
+    transition: color var(--dur-2) var(--ease-std);
+  }
+  .contact-item:hover { color: var(--or); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--ui);
+    padding: var(--s-6) 0; margin-top: var(--s-9);
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace; font-size: var(--fs-11);
+    text-transform: uppercase; letter-spacing: var(--tr-mega); color: var(--tx-3);
+  }
+
+  /* ── SECTION SPACING ── */
+  .section { padding: var(--s-8) 0; }
+  .section + .section { padding-top: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 760px) {
+    .container { padding: 0 var(--s-4); }
+    .header-inner { grid-template-columns: auto 1fr; }
+    .header-loc { display: none; }
+    nav { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .nav-tab { padding: 0 var(--s-3); }
+    .hero-cols { grid-template-columns: 1fr; gap: var(--s-6); }
+    .featured-grid { grid-template-columns: 1fr; }
+    .now-grid { grid-template-columns: 1fr; }
+    .about-layout { grid-template-columns: 1fr; gap: var(--s-6); }
+    .work-row { grid-template-columns: 40px 1fr auto; }
+    .w-year { display: none; }
+    .writing-row { grid-template-columns: 1fr; }
+    .wr-date { display: none; }
+    .hero-name { font-size: clamp(44px, 12vw, 72px); }
+    .page-title { font-size: var(--fs-32); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <div class="logo" onclick="showPage('home')">
+        enzo abuliak <span class="logo-dot"></span>
+      </div>
+      <nav>
+        <button class="nav-tab active" onclick="showPage('home')"    data-page="home">Home</button>
+        <button class="nav-tab"        onclick="showPage('work')"    data-page="work">Work</button>
+        <button class="nav-tab"        onclick="showPage('now')"     data-page="now">Now</button>
+        <button class="nav-tab"        onclick="showPage('writing')" data-page="writing">Writing</button>
+        <button class="nav-tab"        onclick="showPage('about')"   data-page="about">About</button>
+      </nav>
+      <span class="header-loc">Mendocino, CA</span>
+    </div>
+  </div>
+</header>
+
+
+<!-- ═══════════════════════════════ HOME ═══════════════════════════════ -->
+<div id="page-home" class="page active">
+  <div class="container">
+
+    <div class="hero">
+      <div class="hero-eyebrow eyebrow">Film · Radio · Code · Design</div>
+      <h1 class="hero-name">Enzo<br>Abul<span>ia</span>k<span class="dot">.</span></h1>
+      <div class="hero-cols">
+        <p class="hero-bio">
+          I'm a filmmaker, radio host, and builder from <strong>Mendocino, California</strong> — a small coastal town where my dad built our house by hand and the ocean is a constant. I make short films, host shows at <strong>KAKX 89.3 FM</strong>, edit video professionally, and write code when something needs to exist that doesn't yet. In fall 2026 I'm leaving for <strong>UWC-USA</strong> to start the IB Diploma. After that: ETH Zurich, civil engineering, and a life spent building infrastructure in Europe.
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-label">Location</span>
+            <span class="hero-stat-val">Mendocino, CA</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-label">Next</span>
+            <span class="hero-stat-val">UWC-USA · Fall 2026</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-label">Goal</span>
+            <span class="hero-stat-val">ETH Zurich · Civil Engineering</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-label">Citizenship</span>
+            <span class="hero-stat-val">Italian · American</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-label">Radio</span>
+            <span class="hero-stat-val">KAKX 89.3 FM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="eyebrow">Selected work</span>
+        <span class="section-link" onclick="showPage('work')">All work →</span>
+      </div>
+      <div class="featured-grid">
+        <div class="feat-card" onclick="showPage('work')">
+          <span class="feat-type">Film · 2026</span>
+          <div class="feat-title">Detention</div>
+          <div class="feat-desc">Wes Anderson–style short film written and directed with Seraphine Ries. Deadpan, symmetrical, flat affect, precise blocking.</div>
+          <div class="feat-arrow">→</div>
+        </div>
+        <div class="feat-card" onclick="showPage('work')">
+          <span class="feat-type">Radio · Ongoing</span>
+          <div class="feat-title">KAKX 89.3 FM</div>
+          <div class="feat-desc">Student executive and host at Mendocino High School's radio station. Full program logs, curated setlists, broadcast scripts.</div>
+          <div class="feat-arrow">→</div>
+        </div>
+        <div class="feat-card" onclick="showPage('work')">
+          <span class="feat-type">Code · 2025</span>
+          <div class="feat-title">PWA Task Manager</div>
+          <div class="feat-desc">ADHD-friendly single-file progressive web app with Anthropic API integration. Built and deployed to Netlify in a day.</div>
+          <div class="feat-arrow">→</div>
+        </div>
+        <div class="feat-card" onclick="showPage('work')">
+          <span class="feat-type">Film · 2025</span>
+          <div class="feat-title">Alice in Wonderland — Forest Intro</div>
+          <div class="feat-desc">Cinematic forest sequence for school production. Two-camera with DJI Ronin S gimbal and drone. Edited in Premiere Pro.</div>
+          <div class="feat-arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" style="padding-top:0">
+      <div class="section-head">
+        <span class="eyebrow">Currently</span>
+        <span class="section-link" onclick="showPage('now')">Full now page →</span>
+      </div>
+      <div class="currently" onclick="showPage('now')">
+        <div class="curr-dot"></div>
+        <span class="curr-label">Active</span>
+        <span class="curr-text">Filming <em>Detention</em> — edit in DaVinci Resolve next. German practice daily toward C1. AP Lit presentation on Bauhaus → Swiss Style due June 5.</span>
+        <span class="curr-arrow">→</span>
+      </div>
+    </div>
+
+  </div>
+  <footer><div class="container"><div class="footer-inner">
+    <span>enzo abuliak</span>
+    <span>Mendocino, CA — 2026</span>
+  </div></div></footer>
+</div>
+
+
+<!-- ═══════════════════════════════ WORK ═══════════════════════════════ -->
+<div id="page-work" class="page">
+  <div class="container">
+    <div class="page-head">
+      <div class="eyebrow">Work</div>
+      <h1 class="page-title">Projects & credits.</h1>
+      <div class="work-filters">
+        <button class="filter-btn active" onclick="filterWork('all',  this)">All</button>
+        <button class="filter-btn"        onclick="filterWork('film', this)">Film</button>
+        <button class="filter-btn"        onclick="filterWork('video',this)">Video</button>
+        <button class="filter-btn"        onclick="filterWork('radio',this)">Radio</button>
+        <button class="filter-btn"        onclick="filterWork('code', this)">Code</button>
+      </div>
+    </div>
+
+    <div id="work-table" style="padding: var(--s-4) 0;">
+      <div class="work-row" data-cat="film">
+        <span class="w-idx mono">01</span>
+        <div>
+          <div class="w-title">Detention</div>
+          <div class="w-sub">Short film — co-writer, director. Deadpan Wes Anderson aesthetic. In production, May 2026.</div>
+        </div>
+        <span class="pill">Film</span>
+        <span class="w-year">2026</span>
+      </div>
+      <div class="work-row" data-cat="radio">
+        <span class="w-idx mono">02</span>
+        <div>
+          <div class="w-title">KAKX 89.3 FM — Student Executive &amp; Host</div>
+          <div class="w-sub">Curated shows with full program logs and broadcast scripts. RUBII soul/R&amp;B rotation. Mendocino High School.</div>
+        </div>
+        <span class="pill">Radio</span>
+        <span class="w-year">2025–</span>
+      </div>
+      <div class="work-row" data-cat="film">
+        <span class="w-idx mono">03</span>
+        <div>
+          <div class="w-title">Biographical Documentary</div>
+          <div class="w-sub">Lawyer returning to community service in rural hometown. In development.</div>
+        </div>
+        <span class="pill">Film</span>
+        <span class="w-year">2026</span>
+      </div>
+      <div class="work-row" data-cat="film">
+        <span class="w-idx mono">04</span>
+        <div>
+          <div class="w-title">Alice in Wonderland — Forest Intro</div>
+          <div class="w-sub">Cinematic opening sequence. Two-camera, DJI Ronin S gimbal, drone footage. Edited in Premiere Pro.</div>
+        </div>
+        <span class="pill">Film</span>
+        <span class="w-year">2025</span>
+      </div>
+      <div class="work-row" data-cat="video">
+        <span class="w-idx mono">05</span>
+        <div>
+          <div class="w-title">Aline — Ballet Performance Video</div>
+          <div class="w-sub">Editing performance video for ballet dancer. DaVinci Resolve. Due June 5.</div>
+        </div>
+        <span class="pill">Video</span>
+        <span class="w-year">2026</span>
+      </div>
+      <div class="work-row" data-cat="video">
+        <span class="w-idx mono">06</span>
+        <div>
+          <div class="w-title">Freelance Video Editing</div>
+          <div class="w-sub">Ongoing paid work. DaVinci Resolve. Various clients.</div>
+        </div>
+        <span class="pill">Video</span>
+        <span class="w-year">2025–</span>
+      </div>
+      <div class="work-row" data-cat="code">
+        <span class="w-idx mono">07</span>
+        <div>
+          <div class="w-title">PWA Task Manager</div>
+          <div class="w-sub">ADHD-friendly task manager. Single HTML file, Anthropic API, Netlify. Built in a day.</div>
+        </div>
+        <span class="pill">Code</span>
+        <span class="w-year">2025</span>
+      </div>
+      <div class="work-row" data-cat="code">
+        <span class="w-idx mono">08</span>
+        <div>
+          <div class="w-title">Claude Code Skills — new-chat &amp; update-obsidian</div>
+          <div class="w-sub">Custom automation skills for Claude Code. 100% eval pass. Obsidian memory sync running nightly.</div>
+        </div>
+        <span class="pill">Code</span>
+        <span class="w-year">2026</span>
+      </div>
+      <div class="work-row" data-cat="radio">
+        <span class="w-idx mono">09</span>
+        <div>
+          <div class="w-title">NYT Student Podcast Challenge</div>
+          <div class="w-sub">Podcast about leaving Mendocino for UWC-USA — the decision, the ocean, the trade. Submitted May 2026.</div>
+        </div>
+        <span class="pill">Radio</span>
+        <span class="w-year">2026</span>
+      </div>
+    </div>
+
+  </div>
+  <footer><div class="container"><div class="footer-inner">
+    <span>enzo abuliak</span>
+    <span>Mendocino, CA — 2026</span>
+  </div></div></footer>
+</div>
+
+
+<!-- ═══════════════════════════════ NOW ═══════════════════════════════ -->
+<div id="page-now" class="page">
+  <div class="container">
+    <div class="page-head">
+      <div class="eyebrow">Now</div>
+      <h1 class="page-title">What I'm doing.</h1>
+      <div class="now-meta">Updated 2026-05-20 — Mendocino, CA</div>
+    </div>
+
+    <div class="now-grid">
+      <div class="now-col">
+
+        <div class="now-section">
+          <div class="now-sec-title">Active projects</div>
+
+          <div class="now-item">
+            <div class="now-item-top">
+              <span class="now-item-title">Detention</span>
+              <span class="badge badge-green">In production</span>
+            </div>
+            <div class="now-item-body">Short film with Seraphine Ries. Filming May 19 + May 22. Next: complete shoot, edit in DaVinci Resolve.</div>
+            <div class="now-item-tag">Film · Director / co-writer</div>
+          </div>
+
+          <div class="now-item">
+            <div class="now-item-top">
+              <span class="now-item-title">AP Lit Presentation</span>
+              <span class="badge badge-yellow">Due Jun 5</span>
+            </div>
+            <div class="now-item-body">Bauhaus → Swiss International Style. 100-source bibliography done. Need to strengthen the Max Bill emigration thread.</div>
+            <div class="now-item-tag">School · Research presentation</div>
+          </div>
+
+          <div class="now-item">
+            <div class="now-item-top">
+              <span class="now-item-title">Aline Ballet Video</span>
+              <span class="badge badge-yellow">Due Jun 5</span>
+            </div>
+            <div class="now-item-body">Editing a performance video for ballet dancer Aline. DaVinci Resolve.</div>
+            <div class="now-item-tag">Freelance · Video editing</div>
+          </div>
+
+          <div class="now-item">
+            <div class="now-item-top">
+              <span class="now-item-title">Paid video edit</span>
+              <span class="badge badge-red">Overdue</span>
+            </div>
+            <div class="now-item-body">Client job in DaVinci Resolve. Moving this week.</div>
+            <div class="now-item-tag">Freelance · Video editing</div>
+          </div>
+        </div>
+
+        <div class="now-section">
+          <div class="now-sec-title">Upcoming</div>
+
+          <div class="now-item">
+            <div class="now-item-title">UWC-USA · Montezuma, NM</div>
+            <div class="now-item-body">IB Diploma Programme. Moving fall 2026. Pablo handling logistics.</div>
+            <div class="now-item-tag">Life · Education</div>
+          </div>
+
+          <div class="now-item">
+            <div class="now-item-title">ETH Zurich</div>
+            <div class="now-item-body">Target: civil engineering. Need 38+/42 IB, HL Math AA, HL science, German C1.</div>
+            <div class="now-item-tag">Long-term goal</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="now-col">
+
+        <div class="now-section">
+          <div class="now-sec-title">Learning</div>
+
+          <div class="now-item">
+            <div class="now-item-top">
+              <span class="now-item-title">German → C1</span>
+              <span class="badge badge-green">Daily</span>
+            </div>
+            <div class="now-item-body">7pm practice sessions, automated. B1 now — targeting Goethe Institut C1 before or during IB. Extended participial phrases this week.</div>
+            <div class="now-item-tag">Language · Daily rotation</div>
+          </div>
+
+          <div class="now-item">
+            <div class="now-item-title">IB Diploma planning</div>
+            <div class="now-item-body">Mapping courses: English A, Spanish B or Italian Ab Initio, Social &amp; Cultural Anthropology, Physics, Math AA. Sixth TBD.</div>
+            <div class="now-item-tag">Academic · Planning</div>
+          </div>
+        </div>
+
+        <div class="now-section">
+          <div class="now-sec-title">Listening</div>
+
+          <div class="now-item">
+            <div class="now-item-title">RUBII-style soul / R&amp;B</div>
+            <div class="now-item-body">Building sets for KAKX. 16-track rotations, curated for the broadcast.</div>
+            <div class="now-item-tag">Radio · Music</div>
+          </div>
+        </div>
+
+        <div class="now-section">
+          <div class="now-sec-title">Reading</div>
+
+          <div class="now-item">
+            <div class="now-item-title">Swiss International Style — primary sources</div>
+            <div class="now-item-body">100 sources for AP Lit. Tracing Bauhaus pedagogy → Swiss grid through emigrating designers: Max Bill, Paul Klee, Herbert Bayer.</div>
+            <div class="now-item-tag">Research · Design history</div>
+          </div>
+        </div>
+
+        <div class="now-section">
+          <div class="now-sec-title">Watching</div>
+
+          <div class="now-item">
+            <div class="now-item-title">F1 2026 season</div>
+            <div class="now-item-body">New regulation cycle. Rule changes are the most interesting part.</div>
+            <div class="now-item-tag">Motorsport</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <footer><div class="container"><div class="footer-inner">
+    <span>enzo abuliak</span>
+    <span>Updated 2026-05-20</span>
+  </div></div></footer>
+</div>
+
+
+<!-- ═══════════════════════════════ WRITING ═══════════════════════════════ -->
+<div id="page-writing" class="page">
+
+  <!-- LIST VIEW -->
+  <div id="writing-list">
+    <div class="container">
+      <div class="page-head">
+        <div class="eyebrow">Writing</div>
+        <h1 class="page-title">Essays & notes.</h1>
+      </div>
+      <div style="padding: var(--s-4) 0;">
+
+        <div class="writing-row" onclick="showPost('bauhaus')">
+          <div>
+            <div class="wr-tag">Research · Design History</div>
+            <div class="wr-title">From Weimar to Zürich: How the Bauhaus Became Swiss</div>
+            <div class="wr-desc">How emigrating designers — Max Bill, Paul Klee, Herbert Bayer — physically carried Bauhaus principles into Switzerland and seeded the Swiss International Style. Written as an AP Lit research presentation.</div>
+          </div>
+          <span class="wr-date">May 2026</span>
+        </div>
+
+        <div class="writing-row" onclick="showPost('uwc')">
+          <div>
+            <div class="wr-tag">Personal · Audio essay</div>
+            <div class="wr-title">Why I Applied to UWC-USA</div>
+            <div class="wr-desc">The decision made in a hotel room. Ocean versus opportunity. What it means to leave Mendocino. Originally submitted to the NYT Student Podcast Challenge, May 2026.</div>
+          </div>
+          <span class="wr-date">May 2026</span>
+        </div>
+
+        <div class="writing-row" onclick="showPost('detention')">
+          <div>
+            <div class="wr-tag">Film · Process notes</div>
+            <div class="wr-title">On Making Detention</div>
+            <div class="wr-desc">Notes on directing with Wes Anderson's grammar — symmetry, flat affect, precise blocking, and the particular deadpan of high school. Written during production.</div>
+          </div>
+          <span class="wr-date">In progress</span>
+        </div>
+
+      </div>
+      <div style="padding: var(--s-7) 0 var(--s-4); border-top: 1px solid var(--ui); font-size: var(--fs-14); color: var(--tx-3);">
+        More coming. Writing is slow.
+      </div>
+    </div>
+  </div>
+
+  <!-- POST: BAUHAUS -->
+  <div id="post-bauhaus" style="display:none">
+    <div class="container">
+      <div class="post-back" onclick="showWritingList()">← All writing</div>
+      <div class="post-header">
+        <div class="eyebrow post-eyebrow">Research · Design History</div>
+        <h1 class="post-title">From Weimar to Zürich: How the Bauhaus Became Swiss</h1>
+        <div class="post-meta">May 2026 · AP Literature Research Presentation</div>
+      </div>
+      <div class="post-body">
+        <div class="post-draft-notice">
+          <span style="width:6px;height:6px;background:var(--ye);border-radius:999px;display:inline-block"></span>
+          Draft — in progress
+        </div>
+        <p>
+          The Swiss International Style did not arrive fully formed from the Alps. It came in suitcases — the luggage of designers who left Germany as the Bauhaus closed and the political situation made their work impossible. The argument is simple: the Swiss Style is not a separate tradition. It is the Bauhaus, translated by the people who built it and transplanted to a country that had the stability to let it mature.
+        </p>
+        <p>
+          Most design history treats the two movements as sequential — Bauhaus ends in 1933, Swiss Style begins in the 1950s — as though there were a twenty-year gap during which nothing happened. What actually happened was emigration. Max Bill arrived in Zürich. Herbert Bayer went to the United States but his typography kept traveling. Paul Klee, already at the Bauhaus in Dessau, had been teaching color theory that would resurface in Swiss grid work decades later. The Bauhaus did not end. It relocated.
+        </p>
+        <h2>Max Bill and the direct line</h2>
+        <p>
+          The clearest evidence is Max Bill. He studied at the Dessau Bauhaus under Gropius from 1927 to 1929, absorbing the school's core tenet — that form should follow function, that design and fine art were not separate disciplines, that typography was architecture. He returned to Switzerland and spent the next three decades building institutions that would carry these ideas forward: the Hochschule für Gestaltung Ulm, where he served as rector, was a direct institutional successor to the Bauhaus in everything but name.
+        </p>
+        <p>
+          Bill's own graphic work — his exhibition posters, his magazine layouts, his typography — shows the Bauhaus vocabulary translated into the Swiss idiom. The grid is more rigid. The sans-serif is pushed further. The color is reduced. But the logic is the same logic he learned in Dessau: make the structure of the page visible; let the grid do the work; distrust ornament.
+        </p>
+        <h2>What emigration changed</h2>
+        <p>
+          Switzerland was not Germany. The Swiss context — political neutrality, precision manufacturing culture, multilingual publishing needs — pushed the emigrant designers toward something more systematic than what they had practiced at the Bauhaus. The need to design for German, French, and Italian simultaneously demanded a typography that worked across languages without privileging any one of them. The grid became more than an aesthetic choice. It became a practical solution.
+        </p>
+        <p>
+          This is where the Swiss Style diverged from its Bauhaus origins while remaining continuous with them. The Bauhaus had produced radical experimentation — asymmetric layouts, experimental typefaces, collage. The Swiss Style produced a method. The same underlying logic, but systematized, teachable, reproducible. What the emigrant designers built in Zürich and Basel was a way to apply Bauhaus thinking at scale.
+        </p>
+        <p style="color:var(--tx-3);font-style:italic">
+          [Essay continues — more sections on Paul Klee, Josef Müller-Brockmann, and the institutional transmission through design schools pending before June 5 presentation.]
+        </p>
+      </div>
+    </div>
+    <footer><div class="container"><div class="footer-inner">
+      <span>enzo abuliak</span>
+      <span>May 2026</span>
+    </div></div></footer>
+  </div>
+
+  <!-- POST: UWC -->
+  <div id="post-uwc" style="display:none">
+    <div class="container">
+      <div class="post-back" onclick="showWritingList()">← All writing</div>
+      <div class="post-header">
+        <div class="eyebrow post-eyebrow">Personal · Audio essay</div>
+        <h1 class="post-title">Why I Applied to UWC-USA</h1>
+        <div class="post-meta">May 2026 · NYT Student Podcast Challenge</div>
+      </div>
+      <div class="post-body">
+        <p>
+          There's a specific quality of light in Mendocino in the late afternoon, when the fog has burned off and the sun is low over the water. It comes through the cypress trees in long flat lines. My dad built our house here. It's where I've lived my whole life. Leaving is not a small thing.
+        </p>
+        <p>
+          I applied to UWC-USA in the fall. The decision — the real decision, not the application — happened in a hotel room on a trip with my close friend Eli. I remember sitting quietly, working through it the way I tend to work through things: all the way through, not quickly. UWC means leaving the ocean. It means leaving the town I know by name and by light. It means going to New Mexico, which is nothing like the California coast, and spending two years on a campus with students from sixty countries preparing for university in Europe.
+        </p>
+        <p>
+          The tension wasn't about whether UWC was a good opportunity. It clearly is. The tension was about what I'd be giving up, and whether the trade was honest. You can know something is right and still feel the weight of what it costs.
+        </p>
+        <p>
+          What decided it for me was the long arc. I want to study civil engineering at ETH Zurich. I want to build infrastructure — not software, not systems that live in computers, but things that move people and water and weight through physical space. To do that I need German at C1. I need the IB. I need to have lived in Europe, or somewhere that functions on European terms. UWC gives me all of that. Mendocino — as much as I love it, as much as it's made me who I am — doesn't point toward Zurich.
+        </p>
+        <p>
+          So I said yes. I'm leaving in fall 2026. The ocean will still be there when I come back.
+        </p>
+      </div>
+    </div>
+    <footer><div class="container"><div class="footer-inner">
+      <span>enzo abuliak</span>
+      <span>May 2026</span>
+    </div></div></footer>
+  </div>
+
+  <!-- POST: DETENTION -->
+  <div id="post-detention" style="display:none">
+    <div class="container">
+      <div class="post-back" onclick="showWritingList()">← All writing</div>
+      <div class="post-header">
+        <div class="eyebrow post-eyebrow">Film · Process notes</div>
+        <h1 class="post-title">On Making Detention</h1>
+        <div class="post-meta">May 2026 · In production</div>
+      </div>
+      <div class="post-body">
+        <div class="post-draft-notice">
+          <span style="width:6px;height:6px;background:var(--ye);border-radius:999px;display:inline-block"></span>
+          Draft — written during production
+        </div>
+        <p>
+          Seraphine and I wrote <em>Detention</em> in the grammar of Wes Anderson, which means we wrote it in the grammar of constraint. Every shot is centered. Every cut is motivated. The actors don't move unless the script says they move. The blocking is architectural. The delivery is dry.
+        </p>
+        <p>
+          The thing Anderson does — the thing we're trying to do — is find the comedy in the gap between what a situation demands emotionally and how the characters actually respond to it. Detention is a context that should produce anxiety, frustration, boredom. The joke is that the characters are precise about it. They treat it the way you'd treat a meeting agenda. Flat affect is not absence of feeling. It's a specific register.
+        </p>
+        <p>
+          Filming in this style is harder than it looks. The symmetry requirement means every location has to be scouted differently. You're not looking for interesting light or character; you're looking for a room that will hold a centered frame without reading as accidental. We spent more time in pre-production than I expected, doing floor-plan sketches of the classroom before we touched a camera.
+        </p>
+        <p>
+          The casting matters more than usual too. Anderson's humor depends on actors who commit totally to the deadpan. A single moment of ironic distance — an actor who winks at the camera with their eyes — breaks the whole logic. We're still in production as I write this. More notes when we wrap.
+        </p>
+        <p style="color:var(--tx-3);font-style:italic">
+          [Continued after wrap — May 22.]
+        </p>
+      </div>
+    </div>
+    <footer><div class="container"><div class="footer-inner">
+      <span>enzo abuliak</span>
+      <span>May 2026 · In production</span>
+    </div></div></footer>
+  </div>
+
+</div><!-- /page-writing -->
+
+
+<!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
+<div id="page-about" class="page">
+  <div class="container">
+    <div class="page-head">
+      <div class="eyebrow">About</div>
+      <h1 class="page-title">Enzo Abuliak.</h1>
+    </div>
+    <div class="about-layout">
+
+      <div class="about-sidebar">
+        <div class="about-block">
+          <div class="about-block-label">Languages</div>
+          <div class="lang-row"><span class="lang-name">English</span>  <span class="lang-level">Native</span></div>
+          <div class="lang-row"><span class="lang-name">Spanish</span>  <span class="lang-level">AP · Advanced</span></div>
+          <div class="lang-row"><span class="lang-name">Italian</span>  <span class="lang-level">Heritage · Intermediate</span></div>
+          <div class="lang-row"><span class="lang-name">German</span>   <span class="lang-level">B1 → C1 target</span></div>
+        </div>
+
+        <div class="about-block">
+          <div class="about-block-label">Tools</div>
+          <div class="tools-wrap">
+            <span class="pill">DaVinci Resolve</span>
+            <span class="pill">Premiere Pro</span>
+            <span class="pill">Final Cut Pro</span>
+            <span class="pill">Adobe Audition</span>
+            <span class="pill">Soundtrap</span>
+            <span class="pill">Figma</span>
+          </div>
+        </div>
+
+        <div class="about-block">
+          <div class="about-block-label">Currently at</div>
+          <p style="font-size:var(--fs-14);color:var(--tx-2);line-height:var(--lh-base)">
+            Mendocino High School · Junior<br>
+            AP Lang · Spanish IV · Cultural Anthropology<br>
+            Video/Broadcast · Culinary<br>
+            Student executive, <span class="accent">KAKX 89.3 FM</span>
+          </p>
+        </div>
+
+        <div class="about-block">
+          <div class="about-block-label">Contact</div>
+          <div class="contact-list">
+            <a class="contact-item" href="mailto:enzo.abuliak@gmail.com">
+              <i data-lucide="mail" style="width:14px;height:14px;stroke-width:1.5;flex-shrink:0"></i>
+              enzo.abuliak@gmail.com
+            </a>
+            <div class="contact-item">
+              <i data-lucide="map-pin" style="width:14px;height:14px;stroke-width:1.5;flex-shrink:0"></i>
+              Mendocino, CA
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-main">
+        <div>
+          <h2 class="about-heading">From a small town on the California coast.</h2>
+          <div class="about-block" style="border:none;padding:0">
+            <p>
+              I grew up in <strong>Mendocino, California</strong> — a town of about a thousand people on a bluff above the Pacific. My dad, Pablo, built our house by hand. The ocean is a constant presence, and it's shaped how I think about what endures and what doesn't. I'm Italian and American by citizenship, and the European thread has always been there — in my family, in the language I'm working toward, in the architecture and design I find myself drawn to.
+            </p>
+            <p>
+              I'm a junior at Mendocino High School. In fall 2026 I'm leaving for <strong>UWC-USA</strong> in Montezuma, New Mexico to start the IB Diploma Programme — a two-year high school with students from sixty countries, the kind of education that points toward the world I want to live in. After that: <strong>ETH Zurich</strong>, civil engineering, and a career building physical infrastructure in Europe. Not software. Bridges, transit systems, the things that move people through cities.
+            </p>
+            <p>
+              In the meantime I make films, run a radio show, edit video professionally, and write code when something I need doesn't exist yet. I think the creative and technical work feed each other more than most people expect — directing a short film and building an app require the same thing: deciding what to leave out.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-block">
+          <div class="about-block-label">Interests</div>
+          <p>Formula 1 and motorsports, soccer, tennis, travel, the German language and European urbanism, Swiss graphic design, film grammar, the mechanics of a well-run radio show, how cities are actually built.</p>
+        </div>
+
+        <div class="about-block">
+          <div class="about-block-label">On design</div>
+          <p>My aesthetic runs Swiss/Bauhaus — grid, restraint, warm color, no decoration that isn't doing work. The AP Lit paper I'm writing this spring is about exactly this: how Bauhaus designers physically emigrated to Switzerland and seeded what became the Swiss International Style. I'm interested in design as a discipline with a history, not a toolkit.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <footer><div class="container"><div class="footer-inner">
+    <span>enzo abuliak</span>
+    <span>Italian · American · Mendocino</span>
+  </div></div></footer>
+</div>
+
+
+<!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    document.querySelector(`[data-page="${id}"]`).classList.add('active');
+    window.scrollTo(0, 0);
+    // Reset writing view when navigating away and back
+    if (id === 'writing') showWritingList();
+  }
+
+  function showPost(slug) {
+    document.getElementById('writing-list').style.display = 'none';
+    document.querySelectorAll('[id^="post-"]').forEach(p => p.style.display = 'none');
+    document.getElementById('post-' + slug).style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+
+  function showWritingList() {
+    document.querySelectorAll('[id^="post-"]').forEach(p => p.style.display = 'none');
+    document.getElementById('writing-list').style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+
+  function filterWork(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    let i = 1;
+    document.querySelectorAll('.work-row').forEach(row => {
+      const show = cat === 'all' || row.dataset.cat === cat;
+      row.style.display = show ? '' : 'none';
+      if (show) {
+        row.querySelector('.w-idx').textContent = String(i).padStart(2, '0');
+        i++;
+      }
+    });
+  }
+
+  lucide.createIcons();
+</script>
+
+</body>
+</html>
