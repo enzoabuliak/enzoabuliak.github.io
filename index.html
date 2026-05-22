@@ -448,6 +448,122 @@
   .contact-item:hover { color: var(--or); }
 
   /* ══════════════════════════════════════
+     HIRE
+  ══════════════════════════════════════ */
+  .hire-intro {
+    padding: var(--s-7) 0;
+    border-bottom: 1px solid var(--ui);
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: var(--s-8);
+    align-items: start;
+  }
+  .hire-intro-text {
+    font-size: var(--fs-18); color: var(--tx-2);
+    line-height: var(--lh-loose);
+  }
+  .hire-intro-text strong { color: var(--tx); font-weight: 500; }
+  .hire-avail {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .hire-avail-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: var(--s-3) 0;
+    border-bottom: 1px solid var(--ui);
+    font-size: var(--fs-14);
+  }
+  .hire-avail-row:first-child { border-top: 1px solid var(--ui); }
+  .hire-avail-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-11); text-transform: uppercase; letter-spacing: var(--tr-mega);
+    color: var(--tx-3);
+  }
+  .hire-avail-val { color: var(--tx-2); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--ui);
+    border: 1px solid var(--ui);
+    margin: var(--s-7) 0;
+  }
+  .service-card {
+    background: var(--bg);
+    padding: var(--s-6);
+    display: flex; flex-direction: column; gap: var(--s-4);
+  }
+  .service-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-11); text-transform: uppercase; letter-spacing: var(--tr-mega);
+    color: var(--tx-3);
+  }
+  .service-title {
+    font-size: var(--fs-24); font-weight: 500;
+    line-height: var(--lh-snug); letter-spacing: var(--tr-snug);
+  }
+  .service-desc {
+    font-size: var(--fs-14); color: var(--tx-2);
+    line-height: var(--lh-loose); flex: 1;
+  }
+  .service-tools { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-2); }
+
+  .hire-process {
+    border-top: 1px solid var(--ui);
+    padding: var(--s-7) 0;
+    border-bottom: 1px solid var(--ui);
+  }
+  .process-steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px; background: var(--ui);
+    border: 1px solid var(--ui);
+    margin-top: var(--s-6);
+  }
+  .process-step {
+    background: var(--bg);
+    padding: var(--s-5);
+    display: flex; flex-direction: column; gap: var(--s-3);
+  }
+  .process-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--fs-32); font-weight: 500;
+    color: var(--ui-3); line-height: 1;
+    letter-spacing: var(--tr-tight);
+  }
+  .process-step-title { font-size: var(--fs-16); font-weight: 500; }
+  .process-step-body { font-size: var(--fs-14); color: var(--tx-2); line-height: var(--lh-base); }
+
+  .hire-cta {
+    padding: var(--s-8) 0;
+    display: flex; flex-direction: column; gap: var(--s-5);
+    align-items: flex-start;
+  }
+  .hire-cta-heading {
+    font-size: var(--fs-32); font-weight: 500;
+    letter-spacing: var(--tr-tight); line-height: var(--lh-snug);
+  }
+  .hire-cta-sub {
+    font-size: var(--fs-16); color: var(--tx-2); max-width: 480px;
+    line-height: var(--lh-loose);
+  }
+  .hire-email-btn {
+    display: inline-flex; align-items: center; gap: var(--s-3);
+    font-size: var(--fs-16); font-weight: 500;
+    color: var(--or);
+    padding: var(--s-4) var(--s-5);
+    border: 1px solid var(--or); border-radius: var(--r-2);
+    transition: all var(--dur-2) var(--ease-std);
+    text-decoration: none;
+  }
+  .hire-email-btn:hover { background: var(--or); color: var(--bg); }
+
+  @media (max-width: 760px) {
+    .hire-intro { grid-template-columns: 1fr; gap: var(--s-5); }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+  }
+
+  /* ══════════════════════════════════════
      RESUME
   ══════════════════════════════════════ */
   .resume-head {
@@ -587,6 +703,7 @@
         <button class="nav-tab active" onclick="showPage('home')"    data-page="home">Home</button>
         <button class="nav-tab"        onclick="showPage('work')"    data-page="work">Work</button>
         <button class="nav-tab"        onclick="showPage('writing')" data-page="writing">Writing</button>
+        <button class="nav-tab"        onclick="showPage('hire')"    data-page="hire">Hire me</button>
         <button class="nav-tab"        onclick="showPage('resume')"  data-page="resume">Résumé</button>
         <button class="nav-tab"        onclick="showPage('about')"   data-page="about">About</button>
       </nav>
@@ -942,6 +1059,142 @@
   </div>
 
 </div><!-- /page-writing -->
+
+
+<!-- ═══════════════════════════════ HIRE ═══════════════════════════════ -->
+<div id="page-hire" class="page">
+  <div class="container">
+
+    <div class="page-head">
+      <div class="eyebrow">Available for hire</div>
+      <h1 class="page-title">Let's work.</h1>
+    </div>
+
+    <div class="hire-intro">
+      <p class="hire-intro-text">
+        I take on <strong>video editing, cinematography, photography, and audio</strong> work on a project basis. I've shot and edited short films, performance videos, and event content — and I've been doing paid editing work since 2023. Rates are project-dependent. Get in touch and we'll figure it out.
+      </p>
+      <div class="hire-avail">
+        <div class="hire-avail-row">
+          <span class="hire-avail-label">Status</span>
+          <span class="hire-avail-val">Accepting projects</span>
+        </div>
+        <div class="hire-avail-row">
+          <span class="hire-avail-label">Location</span>
+          <span class="hire-avail-val">Mendocino, CA — remote editing worldwide</span>
+        </div>
+        <div class="hire-avail-row">
+          <span class="hire-avail-label">Turnaround</span>
+          <span class="hire-avail-val">Discussed per project</span>
+        </div>
+        <div class="hire-avail-row">
+          <span class="hire-avail-label">Contact</span>
+          <span class="hire-avail-val accent">enzo.abuliak@gmail.com</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <div style="padding-top: var(--s-7)">
+      <div class="section-head" style="margin-bottom: 0">
+        <span class="eyebrow">Services</span>
+      </div>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <span class="service-eyebrow">01 · Post-production</span>
+        <div class="service-title">Video Editing</div>
+        <div class="service-desc">
+          Short films, performance and event videos, social content, promotional cuts. I work to picture from raw footage and deliver a finished, color-graded file. Fast turnaround on straightforward edits; longer timelines for narrative work.
+        </div>
+        <div class="service-tools">
+          <span class="pill">DaVinci Resolve</span>
+          <span class="pill">Premiere Pro</span>
+          <span class="pill">Final Cut Pro</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-eyebrow">02 · Production</span>
+        <div class="service-title">Cinematography</div>
+        <div class="service-desc">
+          Camera operator for events, short films, and documentary work. Comfortable with multi-camera setups, stabilized gimbal work, and coordinating with drone operators. I've shot everything from school productions to paid client work.
+        </div>
+        <div class="service-tools">
+          <span class="pill">DJI Ronin S</span>
+          <span class="pill">Multi-cam</span>
+          <span class="pill">Field production</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-eyebrow">03 · Photography</span>
+        <div class="service-title">Photo &amp; Editing</div>
+        <div class="service-desc">
+          Event photography, portraits, editorial. I shoot and deliver edited finals. Comfortable in mixed and natural light. Turnaround on editing is fast — typically within a few days of the shoot.
+        </div>
+        <div class="service-tools">
+          <span class="pill">Lightroom</span>
+          <span class="pill">Photoshop</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <span class="service-eyebrow">04 · Audio</span>
+        <div class="service-title">Audio Production</div>
+        <div class="service-desc">
+          Podcast editing, dialogue cleanup, sound design for film, and field recording. I've produced and engineered live radio at KAKX 89.3 FM and worked with multi-track audio across film and broadcast projects.
+        </div>
+        <div class="service-tools">
+          <span class="pill">Adobe Audition</span>
+          <span class="pill">Soundtrap</span>
+          <span class="pill">Field recording</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Process -->
+    <div class="hire-process">
+      <div class="section-head" style="margin-bottom: 0; border-top: none; padding-top: 0">
+        <span class="eyebrow">How it works</span>
+      </div>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="process-num">01</div>
+          <div class="process-step-title">Get in touch</div>
+          <div class="process-step-body">Email me with a brief description of the project — what it is, when you need it, and any reference material you have. I'll respond within a day.</div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">02</div>
+          <div class="process-step-title">Align on scope</div>
+          <div class="process-step-body">We talk through deliverables, timeline, and rate. I quote per project, not per hour, so we both know what we're working with from the start.</div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">03</div>
+          <div class="process-step-title">Deliver</div>
+          <div class="process-step-body">I work, you give feedback, I revise. Revisions are included — I'd rather get it right than get it done fast.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="hire-cta">
+      <div class="hire-cta-heading">Ready to start?</div>
+      <p class="hire-cta-sub">Tell me about your project. I'm straightforward about what I can take on and when — no chasing, no vague timelines.</p>
+      <a class="hire-email-btn" href="mailto:enzo.abuliak@gmail.com?subject=Project inquiry">
+        <i data-lucide="mail" style="width:16px;height:16px;stroke-width:1.5"></i>
+        enzo.abuliak@gmail.com
+      </a>
+    </div>
+
+  </div>
+  <footer><div class="container"><div class="footer-inner">
+    <span>enzo abuliak</span>
+    <span>Mendocino, CA — 2026</span>
+  </div></div></footer>
+</div>
 
 
 <!-- ═══════════════════════════════ RESUME ═══════════════════════════════ -->
