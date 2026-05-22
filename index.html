@@ -51,6 +51,24 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
+  /* ── A11Y: visible focus ring for keyboard users ── */
+  :focus { outline: none; }
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--or);
+    border-radius: var(--r-1);
+  }
+
+  /* ── A11Y: reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   body {
     background: var(--bg);
     color: var(--tx);
@@ -185,6 +203,7 @@
   .hero-bio {
     font-size: var(--fs-18); color: var(--tx-2);
     line-height: var(--lh-loose);
+    max-width: 56ch;
   }
   .hero-bio strong { color: var(--tx); font-weight: 500; }
   .hero-stats {
@@ -1564,6 +1583,26 @@
       }
     });
   }
+
+  // A11y: make all clickable cards/rows keyboard-operable.
+  // Adds role="button" + tabindex="0" and triggers click on Enter/Space.
+  (function makeKeyboardAccessible() {
+    const selectors = [
+      '.feat-card', '.work-row', '.writing-row',
+      '.currently', '.nav-tab', '.filter-btn', '.section-link'
+    ];
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      if (el.tagName === 'BUTTON' || el.tagName === 'A') return;
+      if (!el.hasAttribute('role')) el.setAttribute('role', 'button');
+      if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          el.click();
+        }
+      });
+    });
+  })();
 
   lucide.createIcons();
 </script>
